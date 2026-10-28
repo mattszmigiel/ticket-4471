@@ -1,0 +1,51 @@
+---
+layout: runbook
+title: '#4471 · three causes behind one ticket'
+owner: Matt
+status: draft
+reviewed: 2026-10-28
+signature: Matt
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) merged every report about a wrong date into one ticket. Read by
+tenant, channel and report text, the reports have three causes. Only the first is what the
+ticket describes.
+
+<Callout>
+Merged as one issue, but it is three. Each cause needs its own ticket and its own fix.
+</Callout>
+
+## The three causes
+
+<CauseTable ticket={4471} />
+
+- **`parser`**: the shared parser reads every date month first, so day-first tenants get a
+  flipped month and day. This is the cause #4471 names.
+- **`hint`**: booking-v3 prints `MM/DD/YYYY` under the date field. Day-first tenants
+  (alder.physio, copper.studio, pale.harbour) type what the hint says and the form reads it their
+  way. Different bug, different fix.
+- **`shift`**: the date is off by one day, with day and month intact. A timezone or DST problem
+  is the suspect. Not confirmed.
+
+## How the reports were counted
+
+- The export repeats some reports. One id is one report (`uniqueById`).
+- Intake's tag is a guess from the browser. It is wrong for many reports, so the count uses
+  the tenant, the channel and the desk's reading of the report instead.
+- Five reports read as a one-day move (`oneDayMove` in `desk-notes.json`): R-41202, R-41209,
+  R-41236, R-41344, R-41620. They count as `shift`.
+- Three `parser` reports carry no date to check (R-41290, R-41417, R-41514). They are placed by
+  tenant only.
+
+## Tickets
+
+One ticket per cause, filed in the public repo
+[mattszmigiel/ticket-4471](https://github.com/mattszmigiel/ticket-4471/issues).
+
+<RenderStamp {signature} />
