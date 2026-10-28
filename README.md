@@ -1,12 +1,11 @@
 # ticket-4471
 
-Support desk ticket #4471 merged 412 date reports into one issue. Read by tenant, channel and report text, they are three problems (the third sits inside the first count). Each has its own issue here.
+Support desk ticket #4471 merged 412 date reports into one issue. Read by tenant, channel and report text, they are two problems. Each has its own issue here. Five of the parser reports read as a one-day move; the desk files them under parser, and the parser issue notes them.
 
 | Issue | Cause | Reports |
 |---|---|---|
 | parser | shared parser reads dates month first | 379 (includes the 5 below) |
 | hint | booking-v3 hint says MM/DD/YYYY to day-first tenants | 33 |
-| shift | date off by one day (timezone or DST suspect, unconfirmed) | 5, already inside parser's 379 |
 
 379 + 33 = 412 unique reports (the export had 427 rows; 15 repeat an id). Counted from the 2026-10-04 kb export.
 
