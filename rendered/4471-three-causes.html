@@ -1,25 +1,26 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>#4471 · three causes behind one ticket · support kb</title>
+<title>#4471 · what is inside one ticket · support kb</title>
 <style>body{margin:0;background:#fbfaf7;color:#1d1d1b;font:16px/1.6 system-ui,sans-serif}.kb{max-width:760px;margin:0 auto;padding:2rem 16px 4rem}table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}th,td{border-bottom:1px solid #e3e0d8;padding:.35rem .5rem;text-align:left}code{font-family:ui-monospace,Menlo,monospace;font-size:.88em}a{color:#2f6f5e}.meta{color:#6b6a66;font-size:.85rem}.wrong td{background:#fbeee6}.wrong td:last-child{color:#b4501f;font-weight:600}.callout{background:#eef5f2;padding:.6rem 1rem;border-radius:6px}.stamp{margin-top:2rem;font:.85rem ui-monospace,Menlo,monospace;color:#6b6a66}.stamp b{color:#2f6f5e}footer{margin-top:3rem;color:#6b6a66;font-size:.8rem;border-top:1px solid #e3e0d8;padding-top:1rem}</style></head>
 <body><div class="kb"><header><a href="/kb" style="font:.8rem monospace;color:#6b6a66;text-decoration:none">support desk · kb</a>
-<h1>#4471 · three causes behind one ticket</h1>
+<h1>#4471 · what is inside one ticket</h1>
 <p class="meta">owner <b>Matt</b> · draft · reviewed 2026-10-28 · 0 days ago</p></header><main>
-<p><a href="/kb/incidents/4471">#4471</a> merged every report about a wrong date into one ticket. Read by tenant, channel and report text, the reports have three causes. Only the first is what the ticket describes.</p>
-<p class="callout">Merged as one issue, but it is three. Each cause needs its own ticket and its own fix.</p>
-<h2>The three causes</h2>
-<p><strong>412</strong> reports merged into #4471 · <strong>3</strong> causes</p>
+<p><a href="/kb/incidents/4471">#4471</a> merged every report about a wrong date into one ticket. Read by tenant, channel and report text, the reports have two causes, and one small group inside the first reads differently. Only <code>parser</code> is what the ticket describes.</p>
+<p class="callout">Merged as one issue, but it is more than one. Each cause needs its own ticket and its own fix.</p>
+<h2>The causes</h2>
+<p><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
 <table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody>
-<tr><td><code>parser</code></td><td>374</td><td>parser ×351 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr>
+<tr><td><code>parser</code></td><td>379</td><td>parser ×356 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr>
 <tr class="wrong"><td><code>hint</code></td><td>33</td><td>hint ×18 · parser ×15</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>not this ticket — no ticket of its own</td></tr>
-<tr class="wrong"><td><code>shift</code></td><td>5</td><td>parser ×5</td><td>5</td><td>2026-04-02 → 2026-10-04</td><td>not this ticket — no ticket of its own</td></tr></tbody></table>
+</tbody></table>
+<p class="meta">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
 <ul><li><b><code>parser</code></b>: the shared parser reads every date month first, so day-first tenants get a flipped month and day. This is the cause #4471 names.</li>
 <li><b><code>hint</code></b>: booking-v3 prints <code>MM/DD/YYYY</code> under the date field. Day-first tenants (alder.physio, copper.studio, pale.harbour) type what the hint says and the form reads it their way. Different bug, different fix.</li>
-<li><b><code>shift</code></b>: the date is off by one day, with day and month intact. A timezone or DST problem is the suspect. Not confirmed.</li></ul>
+<li><b>One-day shift</b>: 5 of the <code>parser</code> reports are off by one day, with day and month intact. A timezone or DST problem is the suspect. Not confirmed. The desk's view files them under <code>parser</code> by tenant, so they are already inside its count.</li></ul>
 <h2>How the reports were counted</h2>
 <ul><li>The export repeats some reports. One id is one report (<code>uniqueById</code>).</li>
 <li>Intake's tag is a guess from the browser. It is wrong for many reports, so the count uses the tenant, the channel and the desk's reading of the report instead.</li>
-<li>Five reports read as a one-day move (<code>oneDayMove</code> in <code>desk-notes.json</code>): R-41202, R-41209, R-41236, R-41344, R-41620. They count as <code>shift</code>.</li>
+<li>Five reports read as a one-day move (<code>oneDayMove</code> in <code>desk-notes.json</code>): R-41202, R-41209, R-41236, R-41344, R-41620. The table counts them under <code>parser</code>, where they are filed.</li>
 <li>Three <code>parser</code> reports carry no date to check (R-41290, R-41417, R-41514). They are placed by tenant only.</li></ul>
 <h2>Tickets</h2>
 <p>One ticket per cause, filed in the public repo <a href="https://github.com/mattszmigiel/ticket-4471/issues">mattszmigiel/ticket-4471</a>.</p>

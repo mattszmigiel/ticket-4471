@@ -1,4 +1,4 @@
-Covers **5 reports** (of the 412 merged into #4471). 5 tenants, 2026-04-02 to 2026-10-04.
+Covers **5 reports** (already counted inside the 379 of the parser issue; the desk's view files them under parser). 5 tenants, 2026-04-02 to 2026-10-04.
 
 **Problem.** The date is off by one day. Day and month are intact, so this is not a month/day swap. Examples: "Tuesday 12 May" shows as "Monday 11 May"; one meeting is Tuesday for a client in Lisbon and Monday for a client in Toronto; an invite arrives before the booking was made.
 

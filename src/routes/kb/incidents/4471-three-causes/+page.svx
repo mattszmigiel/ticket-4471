@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 · three causes behind one ticket'
+title: '#4471 · what is inside one ticket'
 owner: Matt
 status: draft
 reviewed: 2026-10-28
@@ -14,14 +14,14 @@ signature: v1.eyJzdWIiOiI1OTE4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
 </script>
 
 [#4471](/kb/incidents/4471) merged every report about a wrong date into one ticket. Read by
-tenant, channel and report text, the reports have three causes. Only the first is what the
-ticket describes.
+tenant, channel and report text, the reports have two causes, and a small group inside the first
+reads differently. Only `parser` is what the ticket describes.
 
 <Callout>
-Merged as one issue, but it is three. Each cause needs its own ticket and its own fix.
+Merged as one issue, but it is more than one. Each cause needs its own ticket and its own fix.
 </Callout>
 
-## The three causes
+## The causes
 
 <CauseTable ticket={4471} />
 
@@ -30,8 +30,9 @@ Merged as one issue, but it is three. Each cause needs its own ticket and its ow
 - **`hint`**: booking-v3 prints `MM/DD/YYYY` under the date field. Day-first tenants
   (alder.physio, copper.studio, pale.harbour) type what the hint says and the form reads it their
   way. Different bug, different fix.
-- **`shift`**: the date is off by one day, with day and month intact. A timezone or DST problem
-  is the suspect. Not confirmed.
+- **One-day shift**: 5 of the `parser` reports (the footnote under the table) are off by one day,
+  with day and month intact. A timezone or DST problem is the suspect. Not confirmed. The desk's
+  view files them under `parser` by tenant, so they are already inside its count.
 
 ## How the reports were counted
 
@@ -39,7 +40,7 @@ Merged as one issue, but it is three. Each cause needs its own ticket and its ow
 - Intake's tag is a guess from the browser. It is wrong for many reports, so the count uses
   the tenant, the channel and the desk's reading of the report instead.
 - Five reports read as a one-day move (`oneDayMove` in `desk-notes.json`): R-41202, R-41209,
-  R-41236, R-41344, R-41620. They count as `shift`.
+  R-41236, R-41344, R-41620. The table counts them under `parser`, where they are filed.
 - Three `parser` reports carry no date to check (R-41290, R-41417, R-41514). They are placed by
   tenant only.
 
