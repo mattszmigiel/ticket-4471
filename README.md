@@ -10,5 +10,5 @@ Support desk ticket #4471 merged 412 date reports into one issue. Read by tenant
 
 374 + 33 + 5 = 412 unique reports (the export had 427 rows; 15 repeat an id). Counted from the 2026-10-04 kb export.
 
-- Page: `src/routes/kb/incidents/4471-three-causes/+page.svx` (signed, desk ref DR-95MV-1JW7)
+- Page: `src/routes/kb/incidents/4471-three-causes/+page.svx` (signed, desk ref DR-7KF0-4GQY)
 - Page as the desk sees it: `rendered/4471-three-causes.html`
